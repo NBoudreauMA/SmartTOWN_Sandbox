@@ -1,0 +1,53 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>SmartPERMIT — Licensing Wizard</title>
+  <link rel="stylesheet" href="../../assets/style.css"/>
+</head>
+<body>
+  <header class="header no-print">
+    <img class="logo" src="../../assets/logo.svg" alt="SmartTown logo"/>
+    <div><h1>SmartPERMIT — Licensing</h1><div class="sub">A simple way to apply for town licenses</div></div>
+    <div style="margin-left:auto"><a href="../../index.html"><button class="ghost">Back</button></a></div>
+  </header>
+  <div class="container">
+    <div class="card">
+      <div class="kicker">Application</div>
+      <form id="permit-form" class="grid cols-2">
+        <div><label>License Type</label>
+          <select id="ptype" required>
+            <option value="">Select...</option>
+            <option>Common Victualler</option><option>Peddler</option><option>Entertainment</option>
+          </select>
+        </div>
+        <div><label>Business Name</label><input id="biz" required/></div>
+        <div><label>Applicant</label><input id="applicant" required/></div>
+        <div><label>Phone</label><input id="phone"/></div>
+        <div class="grid cols-1 cond ent-only" style="display:none">
+          <label>Entertainment Details</label><textarea id="ent" rows="3" placeholder="Hours, amplified sound, etc."></textarea>
+        </div>
+        <div class="grid cols-1 cond ped-only" style="display:none">
+          <label>Route/Location</label><textarea id="route" rows="2" placeholder="Where will vending occur?"></textarea>
+        </div>
+        <div class="grid cols-1"><label>Notes (optional)</label><textarea id="notes" rows="2"></textarea></div>
+        <div><button type="submit">Submit</button></div>
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="kicker">Recent Applications</div>
+      <table class="table" id="permit-table">
+        <thead><tr><th>ID</th><th>Type</th><th>Business</th><th>Applicant</th><th>Status</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal no-print"><div class="box"></div></div>
+  <script src="../../../lib/utils.js"></script>
+  <script src="../../../lib/sandbox-api.js"></script>
+  <script src="./permit.js"></script>
+</body>
+</html>

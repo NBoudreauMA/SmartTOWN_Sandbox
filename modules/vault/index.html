@@ -1,0 +1,46 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>SmartVAULT — Records Viewer</title>
+  <link rel="stylesheet" href="../../assets/style.css"/>
+</head>
+<body>
+  <header class="header no-print">
+    <img class="logo" src="../../assets/logo.svg" alt="SmartTown logo"/>
+    <div><h1>SmartVAULT — Records</h1><div class="sub">VAULT-style search • facets • preview (demo docs)</div></div>
+    <div style="margin-left:auto"><a href="../../index.html"><button class="ghost">Back</button></a></div>
+  </header>
+
+  <div class="container grid cols-3">
+    <div class="card">
+      <div class="kicker">Search</div>
+      <div class="grid cols-1">
+        <div><label>Keywords</label><input id="q" placeholder="title, tag, dept"/></div>
+        <div><label>Department</label><input id="dept" placeholder="Finance / DPW / etc."/></div>
+        <div><label>Tag</label><input id="tag" placeholder="budget / SOP / plan"/></div>
+        <div class="grid cols-2">
+          <button id="go">Filter</button>
+          <button class="ghost" id="clear">Clear</button>
+        </div>
+      </div>
+      <hr/>
+      <div class="kicker">Facets</div>
+      <div id="facet-dept" class="small"></div>
+      <div id="facet-tag" class="small" style="margin-top:8px"></div>
+    </div>
+
+    <div class="card" style="grid-column:span 2">
+      <div class="kicker">Results</div>
+      <div id="results"></div>
+    </div>
+  </div>
+
+  <div class="modal no-print"><div class="box"></div></div>
+  <script src="../../../lib/utils.js"></script>
+  <script src="../../../lib/sandbox-api.js"></script>
+  <script src="./vault.js"></script>
+</body>
+</html>

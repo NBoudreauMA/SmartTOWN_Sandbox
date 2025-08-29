@@ -1,0 +1,48 @@
+
+(function(){
+  const form = $('#fix-form'); const tbody = $('#fix-table tbody'); let filter='all';
+
+  function detail(r){
+    const b = el('div',{},
+      el('h3',{}, `SmartFIX #${r.id}`),
+      el('div',{class:'small'}, niceDate(r.createdAt)),
+      el('p',{}, r.desc||''),
+      el('p',{}, el('span',{class:'badge'},r.type),' at ', r.location),
+      el('div',{}, el('button',{onclick:()=>window.print(), class:'secondary'}, 'Print Receipt'), ' ',
+                  el('button',{onclick:modal.close, class:'ghost'}, 'Close'))
+    ); modal.open(b);
+  }
+
+  function row(r){
+    const chip = el('span',{class:'badge ' + (r.status==='Open'?'warn':(r.status==='In Progress'?'info':'ok'))}, r.status);
+    return el('tr',{},
+      el('td',{}, String(r.id)),
+      el('td',{}, r.type||'-'),
+      el('td',{}, r.location||'-'),
+      el('td',{}, niceDate(r.createdAt)),
+      el('td',{}, chip),
+      el('td',{}, el('button',{class:'ghost',onclick:()=>advance(r.id)}, 'Advance'),' ',
+                  el('button',{class:'ghost',onclick:()=>detail(r)}, 'View'))
+    );
+  }
+  function advance(id){
+    const all = SmartTown.getAll('issues'); const rec = all.find(x=>x.id===id); if(!rec) return;
+    const order = ['Open','In Progress','Completed'];
+    rec.status = order[(order.indexOf(rec.status||'Open')+1)%order.length];
+    SmartTown.upsert('issues', rec); toast('Status: '+rec.status); render();
+  }
+  function render(){
+    tbody.innerHTML='';
+    SmartTown.getAll('issues').filter(r=>filter==='all'||r.status===filter).forEach(r=>tbody.appendChild(row(r)));
+  }
+  $$('.tabs button').forEach(btn=>btn.addEventListener('click',()=>{
+    $$('.tabs button').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); filter=btn.dataset.filter; render();
+  }));
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const rec = { type:$('#type').value, location:$('#location').value.trim(), desc:$('#desc').value.trim(),
+      contact:$('#contact').value.trim()||'anon', status:'Open' };
+    SmartTown.upsert('issues', rec); form.reset(); toast('Request submitted'); render();
+  });
+  render();
+})();

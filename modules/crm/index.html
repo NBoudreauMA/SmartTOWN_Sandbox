@@ -1,0 +1,42 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>SmartCRM — Contacts</title>
+  <link rel="stylesheet" href="../../assets/style.css"/>
+</head>
+<body>
+  <header class="header no-print">
+    <img class="logo" src="../../assets/logo.svg" alt="SmartTown logo"/>
+    <div><h1>SmartCRM — Contacts</h1><div class="sub">Constituent list with quick private notes</div></div>
+    <div style="margin-left:auto"><a href="../../index.html"><button class="ghost">Back</button></a></div>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <div class="kicker">Add Contact</div>
+      <form id="c-form" class="grid cols-3">
+        <div><label>Name</label><input id="cname" required/></div>
+        <div><label>Role</label><input id="crole"/></div>
+        <div><label>Email</label><input id="cemail" type="email"/></div>
+        <div class="grid cols-1"><label>Note</label><input id="cnote" placeholder="Quick note (private)"/></div>
+        <div><button type="submit">Save</button></div>
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="kicker">Directory</div>
+      <table class="table" id="c-table">
+        <thead><tr><th>Name</th><th>Role</th><th>Email</th><th>Note</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="../../../lib/utils.js"></script>
+  <script src="../../../lib/sandbox-api.js"></script>
+  <script src="./crm.js"></script>
+</body>
+</html>

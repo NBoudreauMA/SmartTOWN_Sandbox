@@ -1,0 +1,48 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>SmartNOTIFY — Email Templates</title>
+  <link rel="stylesheet" href="../../assets/style.css"/>
+</head>
+<body>
+  <header class="header no-print">
+    <img class="logo" src="../../assets/logo.svg" alt="SmartTown logo"/>
+    <div><h1>SmartNOTIFY — Templates</h1><div class="sub">Preview-only — no sending in demo</div></div>
+    <div style="margin-left:auto"><a href="../../index.html"><button class="ghost">Back</button></a></div>
+  </header>
+
+  <div class="container grid cols-2">
+    <div class="card">
+      <div class="kicker">Template</div>
+      <form id="n-form" class="grid cols-2">
+        <div><label>Choose</label>
+          <select id="tpl">
+            <option value="receipt">Submission Receipt</option>
+            <option value="approval">Approval Request</option>
+            <option value="status">Status Update</option>
+          </select>
+        </div>
+        <div><label>Recipient Name</label><input id="name" placeholder="Jamie"/></div>
+        <div><label>Record Type</label><input id="rtype" placeholder="Request / Application"/></div>
+        <div><label>Record ID</label><input id="rid" placeholder="1234"/></div>
+        <div class="grid cols-1"><label>Custom Note</label><textarea id="note" rows="3"></textarea></div>
+        <div><button type="button" id="preview">Preview</button></div>
+      </form>
+    </div>
+
+    <div class="card" id="preview-pane">
+      <div class="kicker">Preview</div>
+      <div id="email" class="small">Fill the form and click Preview.</div>
+      <hr/>
+      <div class="small">Demo only. In production, this would route through the back-end notification service.</div>
+    </div>
+  </div>
+
+  <script src="../../../lib/utils.js"></script>
+  <script src="../../../lib/sandbox-api.js"></script>
+  <script src="./notify.js"></script>
+</body>
+</html>
